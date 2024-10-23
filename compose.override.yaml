@@ -1,0 +1,9 @@
+services:
+  backend:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/backend`)"
+      - "traefik.http.middlewares.backend-strip.stripprefix.prefixes=/backend"  # Middleware to strip the prefix
+      - "traefik.http.routers.backend.middlewares=backend-strip"  # Apply the middleware
+      - "traefik.http.services.backend.loadbalancer.server.port=3000"
+
